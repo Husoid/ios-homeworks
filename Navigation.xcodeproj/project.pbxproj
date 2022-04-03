@@ -14,6 +14,7 @@
 		CE25D45627F99B1D00B01D27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE25D45527F99B1D00B01D27 /* Assets.xcassets */; };
 		CE25D45927F99B1D00B01D27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE25D45727F99B1D00B01D27 /* LaunchScreen.storyboard */; };
 		CE25D48127FA0CE100B01D27 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25D48027FA0CE100B01D27 /* ProfileView.xib */; };
+		CE25D48327FA13AD00B01D27 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25D48227FA13AC00B01D27 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CE25D45827F99B1D00B01D27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE25D45A27F99B1D00B01D27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE25D48027FA0CE100B01D27 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		CE25D48227FA13AC00B01D27 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				CE25D45227F99B1A00B01D27 /* Main.storyboard */,
 				CE25D45527F99B1D00B01D27 /* Assets.xcassets */,
 				CE25D48027FA0CE100B01D27 /* ProfileView.xib */,
+				CE25D48227FA13AC00B01D27 /* ProfileView.swift */,
 				CE25D45727F99B1D00B01D27 /* LaunchScreen.storyboard */,
 				CE25D45A27F99B1D00B01D27 /* Info.plist */,
 			);
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE25D48327FA13AD00B01D27 /* ProfileView.swift in Sources */,
 				CE25D45127F99B1A00B01D27 /* ViewController.swift in Sources */,
 				CE25D44D27F99B1A00B01D27 /* AppDelegate.swift in Sources */,
 				CE25D44F27F99B1A00B01D27 /* SceneDelegate.swift in Sources */,
