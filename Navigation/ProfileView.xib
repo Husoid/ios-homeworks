@@ -40,7 +40,7 @@
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Qo5-KZ-mhm">
                     <rect key="frame" x="20" y="172" width="467" height="137"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <string key="text">Мне 39 лет. Живу в городе Тюмень. Работаю в ОА "Транснефть - Сибирь", начальником службы ИТ. Увлекаюсь програмированием. Люблю горные лыжи.
 Я писал два проекта на языке Kotlin в Android Studio, прошел базовый курс "Знакомcтво с Java".
