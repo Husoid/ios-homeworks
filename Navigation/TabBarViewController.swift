@@ -19,12 +19,13 @@ class TabBarViewController: UITabBarController {
     }
     
     private func setupTabBarController() {
-        feedVC.tabBarItem.title = "Лента"
+        let navController = UINavigationController(rootViewController: feedVC)
+        navController.tabBarItem.title = "Лента"
+        feedVC.navigationItem.title = "jkbjk"
+        
         profileVC.tabBarItem.title = "Профиль"
         
-        viewControllers = [feedVC, profileVC]
-        
-//        feedVC.tabBarItem.image =
+        viewControllers = [profileVC, navController]
     }
     
     

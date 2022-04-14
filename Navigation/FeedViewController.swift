@@ -11,6 +11,7 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
 
         makeButton()
         // Do any additional setup after loading the view.
@@ -31,6 +32,10 @@ class FeedViewController: UIViewController {
         let postVC = PostViewController()
         present(postVC, animated: true)
         
+    }
+    
+    struct Post {
+        var title:String
     }
 
 }
