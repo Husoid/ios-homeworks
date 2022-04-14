@@ -11,6 +11,10 @@
 		CE25D45127F99B1A00B01D27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25D45027F99B1A00B01D27 /* ViewController.swift */; };
 		CE25D45627F99B1D00B01D27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE25D45527F99B1D00B01D27 /* Assets.xcassets */; };
 		CE25D45927F99B1D00B01D27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE25D45727F99B1D00B01D27 /* LaunchScreen.storyboard */; };
+		CE2A400028035E5200EAD554 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A3FFF28035E5200EAD554 /* TabBarViewController.swift */; };
+		CE2A40022803601200EAD554 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40012803601200EAD554 /* FeedViewController.swift */; };
+		CE2A40042803603200EAD554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40032803603200EAD554 /* ProfileViewController.swift */; };
+		CE2A40062803607D00EAD554 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40052803607D00EAD554 /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		CE25D45527F99B1D00B01D27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE25D45827F99B1D00B01D27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE25D45A27F99B1D00B01D27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE2A3FFF28035E5200EAD554 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		CE2A40012803601200EAD554 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		CE2A40032803603200EAD554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CE2A40052803607D00EAD554 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,10 @@
 			isa = PBXGroup;
 			children = (
 				CE25D44C27F99B1A00B01D27 /* AppDelegate.swift */,
+				CE2A3FFF28035E5200EAD554 /* TabBarViewController.swift */,
+				CE2A40012803601200EAD554 /* FeedViewController.swift */,
+				CE2A40032803603200EAD554 /* ProfileViewController.swift */,
+				CE2A40052803607D00EAD554 /* PostViewController.swift */,
 				CE25D45027F99B1A00B01D27 /* ViewController.swift */,
 				CE25D45727F99B1D00B01D27 /* LaunchScreen.storyboard */,
 				CE25D45527F99B1D00B01D27 /* Assets.xcassets */,
@@ -131,7 +143,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2A40062803607D00EAD554 /* PostViewController.swift in Sources */,
 				CE25D45127F99B1A00B01D27 /* ViewController.swift in Sources */,
+				CE2A400028035E5200EAD554 /* TabBarViewController.swift in Sources */,
+				CE2A40042803603200EAD554 /* ProfileViewController.swift in Sources */,
+				CE2A40022803601200EAD554 /* FeedViewController.swift in Sources */,
 				CE25D44D27F99B1A00B01D27 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
