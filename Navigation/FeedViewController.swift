@@ -30,12 +30,14 @@ class FeedViewController: UIViewController {
     
     @objc private func clik() {
         let postVC = PostViewController()
-        present(postVC, animated: true)
+        postVC.title = post.title
+        navigationController?.pushViewController(postVC, animated: true)
         
     }
     
     struct Post {
         var title:String
     }
+    let post:Post = Post(title: "Пост")
 
 }

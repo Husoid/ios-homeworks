@@ -15,6 +15,7 @@
 		CE2A40022803601200EAD554 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40012803601200EAD554 /* FeedViewController.swift */; };
 		CE2A40042803603200EAD554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40032803603200EAD554 /* ProfileViewController.swift */; };
 		CE2A40062803607D00EAD554 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40052803607D00EAD554 /* PostViewController.swift */; };
+		CEE5BDC828092E6F00A58808 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5BDC728092E6E00A58808 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CE2A40012803601200EAD554 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		CE2A40032803603200EAD554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CE2A40052803607D00EAD554 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		CEE5BDC728092E6E00A58808 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				CE2A40012803601200EAD554 /* FeedViewController.swift */,
 				CE2A40032803603200EAD554 /* ProfileViewController.swift */,
 				CE2A40052803607D00EAD554 /* PostViewController.swift */,
+				CEE5BDC728092E6E00A58808 /* InfoViewController.swift */,
 				CE25D45027F99B1A00B01D27 /* ViewController.swift */,
 				CE25D45727F99B1D00B01D27 /* LaunchScreen.storyboard */,
 				CE25D45527F99B1D00B01D27 /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 				CE2A40062803607D00EAD554 /* PostViewController.swift in Sources */,
 				CE25D45127F99B1A00B01D27 /* ViewController.swift in Sources */,
 				CE2A400028035E5200EAD554 /* TabBarViewController.swift in Sources */,
+				CEE5BDC828092E6F00A58808 /* InfoViewController.swift in Sources */,
 				CE2A40042803603200EAD554 /* ProfileViewController.swift in Sources */,
 				CE2A40022803601200EAD554 /* FeedViewController.swift in Sources */,
 				CE25D44D27F99B1A00B01D27 /* AppDelegate.swift in Sources */,
