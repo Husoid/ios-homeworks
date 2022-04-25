@@ -15,6 +15,7 @@
 		CE2A40022803601200EAD554 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40012803601200EAD554 /* FeedViewController.swift */; };
 		CE2A40042803603200EAD554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40032803603200EAD554 /* ProfileViewController.swift */; };
 		CE2A40062803607D00EAD554 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A40052803607D00EAD554 /* PostViewController.swift */; };
+		CECE14EA281676520023912F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE14E9281676520023912F /* ProfileHeaderView.swift */; };
 		CEE5BDC828092E6F00A58808 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5BDC728092E6E00A58808 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		CE2A40012803601200EAD554 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		CE2A40032803603200EAD554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CE2A40052803607D00EAD554 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		CECE14E9281676520023912F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		CEE5BDC728092E6E00A58808 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +64,7 @@
 		CE25D44B27F99B1A00B01D27 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				CECE14E82816738B0023912F /* Profile */,
 				CE25D44C27F99B1A00B01D27 /* AppDelegate.swift */,
 				CE2A3FFF28035E5200EAD554 /* TabBarViewController.swift */,
 				CE2A40012803601200EAD554 /* FeedViewController.swift */,
@@ -74,6 +77,14 @@
 				CE25D45A27F99B1D00B01D27 /* Info.plist */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		CECE14E82816738B0023912F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CECE14E9281676520023912F /* ProfileHeaderView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +164,7 @@
 				CE2A40042803603200EAD554 /* ProfileViewController.swift in Sources */,
 				CE2A40022803601200EAD554 /* FeedViewController.swift in Sources */,
 				CE25D44D27F99B1A00B01D27 /* AppDelegate.swift in Sources */,
+				CECE14EA281676520023912F /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
