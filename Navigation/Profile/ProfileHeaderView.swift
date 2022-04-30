@@ -8,8 +8,6 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-
-//    let widthSize = UIScreen.main.bounds.screens.size.width
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,6 +15,7 @@ class ProfileHeaderView: UIView {
         addSubview(text)
         addSubview(textStatus)
         addSubview(button)
+        addSubview(textFieldStatus)
     }
     
     required init?(coder: NSCoder) {
@@ -35,31 +34,45 @@ class ProfileHeaderView: UIView {
     } ()
     
     let text: UITextView = {
-        let text = UITextView(frame: CGRect(x: 132, y: 27, width: 300, height: 20))
+        let text = UITextView(frame: CGRect(x: 132, y: 27, width: 300, height: 30))
         text.text = "Хусаинов Руслан"
         text.textColor = .black
+        text.backgroundColor = .lightGray
         text.font = UIFont.boldSystemFont(ofSize: 18)
         return text
     } ()
     
     let textStatus: UITextView = {
-        let text = UITextView(frame: CGRect(x: 132, y: 80, width: 300, height: 20))
+        let text = UITextView(frame: CGRect(x: 132, y: 80, width: 300, height: 30))
         text.text = "Waiting for something..."
         text.textColor = .gray
+        text.backgroundColor = .lightGray
         text.font = UIFont.systemFont(ofSize: 14)
         return text
     } ()
     
-//    let textStatus: UITextField = {
-//        let text = UITextFild(frame: CGRect(x: 132, y: 80, width: 300, height: 20))
-//        text.text = "Waiting for something..."
-//        text.textColor = .gray
-//        text.font = UIFont.systemFont(ofSize: 14)
-//        return text
-//    } ()
+    let textFieldStatus: UITextField = {
+        let text = UITextField(frame: CGRect(x: 132, y: 126, width: UIScreen.main.bounds.width - 148, height: 40))
+        text.backgroundColor = .white
+        text.layer.borderColor = UIColor.black.cgColor
+        text.layer.borderWidth = 1
+        text.layer.cornerRadius = 12
+        text.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        text.textColor = .black
+        text.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
+        text.leftViewMode = .always
+        return text
+    } ()
+    
+    private var statusText:String = ""
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text!
+    }
     
     let button:UIButton = {
-        let button = UIButton(frame: CGRect(x: 16, y: 132, width: UIScreen.main.bounds.width - 32, height: 50))
+        let button = UIButton(frame: CGRect(x: 16, y: 182, width: UIScreen.main.bounds.width - 32, height: 50))
         button.backgroundColor = .blue
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -74,6 +87,7 @@ class ProfileHeaderView: UIView {
     } ()
     
     @objc private func buttonPressed() {
-        print(textStatus.text!)
+        textStatus.text = statusText
+//        print(textStatus.text!)
     }
 }
