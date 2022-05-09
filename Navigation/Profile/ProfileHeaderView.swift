@@ -11,30 +11,57 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(imageView)
-        addSubview(text)
-        addSubview(textStatus)
-        addSubview(button)
-        addSubview(textFieldStatus)
+        
+//        [imageView, text, textStatus, textFieldStatus, button] .forEach {addSubview($0)}
+        [button] .forEach {addSubview($0)}
+        
+        NSLayoutConstraint.activate([
+//            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+//            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+//            imageView.widthAnchor.constraint(equalToConstant: 100),
+//            imageView.heightAnchor.constraint(equalToConstant: 100),
+//
+//            text.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+//            text.topAnchor.constraint(equalTo: imageView.topAnchor),
+//            text.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+//            text.heightAnchor.constraint(equalToConstant: 30),
+//
+//            textStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+//            textStatus.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+//            textStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+//            textStatus.heightAnchor.constraint(equalToConstant: 30),
+//
+//            textFieldStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+//            textFieldStatus.topAnchor.constraint(equalTo: textStatus.bottomAnchor, constant: 16),
+//            textFieldStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+//            textFieldStatus.heightAnchor.constraint(equalToConstant: 40),
+            
+            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            button.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            button.widthAnchor.constraint(equalToConstant: 50)
+        ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    let imageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 16, y: 16, width: 100, height: 100))
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.image = UIImage(named: "изображение_viber_2020-11-07_12-39-49")
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+//        imageView.layer.cornerRadius = imageView.frame.size.width / 2
         imageView.clipsToBounds = true
         return imageView
     } ()
     
-    let text: UITextView = {
-        let text = UITextView(frame: CGRect(x: 132, y: 27, width: 300, height: 30))
+    private let text: UITextView = {
+        let text = UITextView()
+        text.translatesAutoresizingMaskIntoConstraints = false
         text.text = "Хусаинов Руслан"
         text.textColor = .black
         text.backgroundColor = .lightGray
@@ -42,8 +69,9 @@ class ProfileHeaderView: UIView {
         return text
     } ()
     
-    let textStatus: UITextView = {
-        let text = UITextView(frame: CGRect(x: 132, y: 80, width: 300, height: 30))
+    private let textStatus: UITextView = {
+        let text = UITextView()
+        text.translatesAutoresizingMaskIntoConstraints = false
         text.text = "Waiting for something..."
         text.textColor = .gray
         text.backgroundColor = .lightGray
@@ -51,8 +79,9 @@ class ProfileHeaderView: UIView {
         return text
     } ()
     
-    let textFieldStatus: UITextField = {
-        let text = UITextField(frame: CGRect(x: 132, y: 126, width: UIScreen.main.bounds.width - 148, height: 40))
+    private lazy var textFieldStatus: UITextField = {
+        let text = UITextField()
+        text.translatesAutoresizingMaskIntoConstraints = false
         text.backgroundColor = .white
         text.layer.borderColor = UIColor.black.cgColor
         text.layer.borderWidth = 1
@@ -71,8 +100,9 @@ class ProfileHeaderView: UIView {
         statusText = textField.text!
     }
     
-    let button:UIButton = {
-        let button = UIButton(frame: CGRect(x: 16, y: 182, width: UIScreen.main.bounds.width - 32, height: 50))
+    private lazy var button: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .blue
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -88,6 +118,5 @@ class ProfileHeaderView: UIView {
     
     @objc private func buttonPressed() {
         textStatus.text = statusText
-//        print(textStatus.text!)
     }
 }
