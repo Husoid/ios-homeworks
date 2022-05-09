@@ -12,34 +12,33 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        [imageView, text, textStatus, textFieldStatus, button] .forEach {addSubview($0)}
-        [button] .forEach {addSubview($0)}
+        [imageView, text, textStatus, textFieldStatus] .forEach {addSubview($0)}
         
         NSLayoutConstraint.activate([
-//            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-//            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-//            imageView.widthAnchor.constraint(equalToConstant: 100),
-//            imageView.heightAnchor.constraint(equalToConstant: 100),
-//
-//            text.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-//            text.topAnchor.constraint(equalTo: imageView.topAnchor),
-//            text.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-//            text.heightAnchor.constraint(equalToConstant: 30),
-//
-//            textStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-//            textStatus.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-//            textStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-//            textStatus.heightAnchor.constraint(equalToConstant: 30),
-//
-//            textFieldStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-//            textFieldStatus.topAnchor.constraint(equalTo: textStatus.bottomAnchor, constant: 16),
-//            textFieldStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-//            textFieldStatus.heightAnchor.constraint(equalToConstant: 40),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            imageView.widthAnchor.constraint(equalToConstant: 100),
+            imageView.heightAnchor.constraint(equalToConstant: 100),
+
+            text.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+            text.topAnchor.constraint(equalTo: imageView.topAnchor),
+            text.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            text.heightAnchor.constraint(equalToConstant: 30),
+
+            textStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+            textStatus.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+            textStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            textStatus.heightAnchor.constraint(equalToConstant: 30),
+
+            textFieldStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+            textFieldStatus.topAnchor.constraint(equalTo: textStatus.bottomAnchor, constant: 16),
+            textFieldStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            textFieldStatus.heightAnchor.constraint(equalToConstant: 40),
             
-            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            button.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            button.widthAnchor.constraint(equalToConstant: 50)
+//            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+//            button.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+//            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+//            button.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -54,7 +53,7 @@ class ProfileHeaderView: UIView {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.image = UIImage(named: "изображение_viber_2020-11-07_12-39-49")
         imageView.contentMode = .scaleAspectFill
-//        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
         return imageView
     } ()
