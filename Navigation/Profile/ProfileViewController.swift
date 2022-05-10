@@ -9,16 +9,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        makeProfileHeadrVC()
+        makeNewButton()
     }
     
     override func viewWillLayoutSubviews() {
-        makeProfileHeadrVC()
-        makeNewButton()
+
     }
 
     private func makeProfileHeadrVC () {
@@ -32,7 +31,6 @@ class ProfileViewController: UIViewController {
             profileHeadrVC.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             profileHeadrVC.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             profileHeadrVC.heightAnchor.constraint(equalToConstant: 220)
-            
         ])
         
     }
@@ -41,6 +39,7 @@ class ProfileViewController: UIViewController {
         let newButton = UIButton()
         newButton.translatesAutoresizingMaskIntoConstraints = false
         newButton.setTitle("Новая кнопка", for: .normal)
+        newButton.backgroundColor = .blue
         view.addSubview(newButton)
         
         NSLayoutConstraint.activate([
@@ -48,7 +47,6 @@ class ProfileViewController: UIViewController {
             newButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             newButton.heightAnchor.constraint(equalToConstant: 50)
-        
         ])
     }
 

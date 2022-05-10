@@ -12,7 +12,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        [imageView, text, textStatus, textFieldStatus] .forEach {addSubview($0)}
+        [imageView, text, textStatus, textFieldStatus, button] .forEach {addSubview($0)}
         
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -26,7 +26,7 @@ class ProfileHeaderView: UIView {
             text.heightAnchor.constraint(equalToConstant: 30),
 
             textStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-            textStatus.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+            textStatus.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -32),
             textStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             textStatus.heightAnchor.constraint(equalToConstant: 30),
 
@@ -35,10 +35,10 @@ class ProfileHeaderView: UIView {
             textFieldStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             textFieldStatus.heightAnchor.constraint(equalToConstant: 40),
             
-//            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-//            button.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-//            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-//            button.heightAnchor.constraint(equalToConstant: 50)
+            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            button.topAnchor.constraint(equalTo: textFieldStatus.bottomAnchor, constant: 16),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            button.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -93,12 +93,6 @@ class ProfileHeaderView: UIView {
         return text
     } ()
     
-    private var statusText:String = ""
-    
-    @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text!
-    }
-    
     private lazy var button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -114,6 +108,12 @@ class ProfileHeaderView: UIView {
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     } ()
+    
+    private var statusText:String = ""
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text!
+    }
     
     @objc private func buttonPressed() {
         textStatus.text = statusText
