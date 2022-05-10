@@ -46,7 +46,7 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 3
@@ -58,7 +58,7 @@ class ProfileHeaderView: UIView {
         return imageView
     } ()
     
-    private let text: UITextView = {
+    private lazy var text: UITextView = {
         let text = UITextView()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.text = "Хусаинов Руслан"
@@ -68,7 +68,7 @@ class ProfileHeaderView: UIView {
         return text
     } ()
     
-    private let textStatus: UITextView = {
+    private lazy var textStatus: UITextView = {
         let text = UITextView()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.text = "Waiting for something..."
@@ -109,7 +109,7 @@ class ProfileHeaderView: UIView {
         return button
     } ()
     
-    private var statusText:String = ""
+    private lazy var statusText:String = ""
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text!

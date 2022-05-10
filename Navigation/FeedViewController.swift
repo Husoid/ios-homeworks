@@ -15,7 +15,7 @@ class FeedViewController: UIViewController {
     
     let post:Post = Post(title: "Пост")
     
-    private let stackView:UIStackView = {
+    private lazy var stackView:UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.backgroundColor = .green
