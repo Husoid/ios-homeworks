@@ -66,6 +66,10 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func goToProfileHederView() {
+        let profileVC = ProfileViewController()
+//        profileVC.title = "Профиль"
+//        profileVC.navigationController?.navigationBar.isHidden = false
+        navigationController?.pushViewController(profileVC, animated: true)
         
     }
 

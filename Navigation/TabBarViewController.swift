@@ -29,7 +29,6 @@ class TabBarViewController: UITabBarController {
         
         loginVC.tabBarItem.title = "Профиль"
         loginVC.navigationController?.navigationBar.isHidden = true
-        //loginVC.navigationItem.title = "Профиль"
         loginVC.tabBarItem.image = UIImage(systemName: "bolt")
         
         viewControllers = [navControllerFeed, navControllerProfile]
