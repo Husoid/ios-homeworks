@@ -8,6 +8,8 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    private let post = Post.makePost()
 
     private lazy var tableView:UITableView = {
         let tableView = UITableView()
@@ -55,10 +57,12 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return post.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         return UITableViewCell()
     }
         
