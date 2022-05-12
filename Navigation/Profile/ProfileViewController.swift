@@ -9,29 +9,14 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        view.addSubview(profileHeadrVC)
-        view.addSubview(newButton)
-        
-        NSLayoutConstraint.activate([
-            profileHeadrVC.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            profileHeadrVC.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            profileHeadrVC.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            profileHeadrVC.heightAnchor.constraint(equalToConstant: 220),
-            
-            newButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            newButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            newButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
+    private lazy var tableView:UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        return tableView
+    }()
     
-    override func viewWillLayoutSubviews() {
-
-    }
-
     private lazy var profileHeadrVC:ProfileHeaderView = {
         let profileHeadrVC = ProfileHeaderView()
         profileHeadrVC.translatesAutoresizingMaskIntoConstraints = false
@@ -39,14 +24,48 @@ class ProfileViewController: UIViewController {
         view.addSubview(profileHeadrVC)
         return profileHeadrVC
     }()
-    
-    private lazy var newButton:UIButton = {
-        let newButton = UIButton()
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        newButton.setTitle("Новая кнопка", for: .normal)
-        newButton.backgroundColor = .blue
-        view.addSubview(newButton)
-        return newButton
-    }()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        layout()
+    }
+    
+    private func layout() {
+        
+        [profileHeadrVC, tableView] .forEach {view.addSubview($0)}
+        
+        NSLayoutConstraint.activate([
+            profileHeadrVC.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            profileHeadrVC.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            profileHeadrVC.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            profileHeadrVC.heightAnchor.constraint(equalToConstant: 220),
+            
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: profileHeadrVC.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            
+        ])
+    }
+    
+}
+
+//MARK: - UITableViewDataSource
+
+extension ProfileViewController:UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+        
+}
+
+//MARK: - UITableViewDelegate
+
+extension ProfileViewController:UITableViewDelegate {
+    
 }
