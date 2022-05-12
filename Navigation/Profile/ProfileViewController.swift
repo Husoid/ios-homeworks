@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "qwe")
         return tableView
     }()
     
@@ -61,9 +62,8 @@ extension ProfileViewController:UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "qwe", for: indexPath)
+        return cell
     }
         
 }
@@ -71,5 +71,8 @@ extension ProfileViewController:UITableViewDataSource {
 //MARK: - UITableViewDelegate
 
 extension ProfileViewController:UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        516
+    }
     
 }

@@ -9,10 +9,17 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
+    private lazy var cellView:UIView = {
+        let cellView = UIView()
+        cellView.translatesAutoresizingMaskIntoConstraints = false
+        cellView.backgroundColor = .white
+        return cellView
+    }()
+    
     private lazy var authorTextView:UITextView = {
         let authorTextView = UITextView()
         authorTextView.translatesAutoresizingMaskIntoConstraints = false
-        authorTextView.backgroundColor = .lightGray
+        authorTextView.backgroundColor = .white
         return authorTextView
     }()
     
@@ -53,37 +60,42 @@ class PostTableViewCell: UITableViewCell {
     }
     
     private func layout() {
-        
-        [authorTextView, descriptionTextView, image, likesTextView, viewsTextView] .forEach {contentView.addSubview($0)}
-        
-        let x = contentView.frame.size.width / 2
+       
+        contentView.addSubview(cellView)
         
         NSLayoutConstraint.activate([
-            authorTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            authorTextView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            authorTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cellView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            cellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+        
+        [authorTextView, descriptionTextView, image, likesTextView, viewsTextView] .forEach {cellView.addSubview($0)}
+
+        NSLayoutConstraint.activate([
+            authorTextView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
+            authorTextView.topAnchor.constraint(equalTo: cellView.topAnchor),
+            authorTextView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
             authorTextView.heightAnchor.constraint(equalToConstant: 50),
-            
-            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+
+            image.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
             image.topAnchor.constraint(equalTo: authorTextView.bottomAnchor),
-            image.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            image.heightAnchor.constraint(equalToConstant: 500),
-            
-            descriptionTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            image.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
+            image.heightAnchor.constraint(equalToConstant: 300),
+
+            descriptionTextView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
             descriptionTextView.topAnchor.constraint(equalTo: image.bottomAnchor),
-            descriptionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            descriptionTextView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
             descriptionTextView.heightAnchor.constraint(equalToConstant: 100),
-            
-            likesTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+
+            likesTextView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
             likesTextView.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor),
-            likesTextView.trailingAnchor.constraint(equalTo: viewsTextView.leadingAnchor),
-            likesTextView.widthAnchor.constraint(equalToConstant: x),
-            likesTextView.heightAnchor.constraint(equalToConstant: 100),
-            
-            viewsTextView.leadingAnchor.constraint(equalTo: likesTextView.trailingAnchor),
+            likesTextView.widthAnchor.constraint(equalToConstant: 50),
+            likesTextView.heightAnchor.constraint(equalToConstant: 50),
+
             viewsTextView.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor),
-            viewsTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            viewsTextView.widthAnchor.constraint(equalToConstant: x),
+            viewsTextView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
+            viewsTextView.widthAnchor.constraint(equalToConstant: 50),
             viewsTextView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
