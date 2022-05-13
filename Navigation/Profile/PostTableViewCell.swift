@@ -98,12 +98,10 @@ class PostTableViewCell: UITableViewCell {
             descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: image.bottomAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-//            descriptionTextView.heightAnchor.constraint(equalToConstant: 50),
 
             likesLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
             likesLabel.widthAnchor.constraint(equalToConstant: 70),
-//            likesLabel.heightAnchor.constraint(equalToConstant: 30),
             likesLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
             
             viewsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),

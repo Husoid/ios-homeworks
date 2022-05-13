@@ -19,14 +19,6 @@ class ProfileViewController: UIViewController {
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         return tableView
     }()
-    
-    private lazy var profileHeadrVC:ProfileHeaderView = {
-        let profileHeadrVC = ProfileHeaderView()
-        profileHeadrVC.translatesAutoresizingMaskIntoConstraints = false
-        profileHeadrVC.backgroundColor = .lightGray
-        view.addSubview(profileHeadrVC)
-        return profileHeadrVC
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,22 +28,15 @@ class ProfileViewController: UIViewController {
     
     private func layout() {
         
-        [profileHeadrVC, tableView] .forEach {view.addSubview($0)}
+        [tableView] .forEach {view.addSubview($0)}
         
         NSLayoutConstraint.activate([
-            profileHeadrVC.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeadrVC.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeadrVC.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeadrVC.heightAnchor.constraint(equalToConstant: 220),
-            
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: profileHeadrVC.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            
         ])
     }
-    
 }
 
 //MARK: - UITableViewDataSource
@@ -75,5 +60,11 @@ extension ProfileViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        ProfileHeaderView()
+    }
+    
     
 }

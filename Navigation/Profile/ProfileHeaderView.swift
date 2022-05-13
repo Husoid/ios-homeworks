@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        backgroundColor = .lightGray
         [imageView, text, textStatus, textFieldStatus, button] .forEach {addSubview($0)}
         
         NSLayoutConstraint.activate([
@@ -38,7 +38,8 @@ class ProfileHeaderView: UIView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             button.topAnchor.constraint(equalTo: textFieldStatus.bottomAnchor, constant: 16),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            button.heightAnchor.constraint(equalToConstant: 50)
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
     }
     
