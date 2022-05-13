@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE149FD6282D089B00159C2C /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE149FD5282D089B00159C2C /* PostTableViewCell.swift */; };
+		CE149FD8282E14DB00159C2C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE149FD7282E14DB00159C2C /* UIView+Extension.swift */; };
 		CE25D44D27F99B1A00B01D27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25D44C27F99B1A00B01D27 /* AppDelegate.swift */; };
 		CE25D45127F99B1A00B01D27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25D45027F99B1A00B01D27 /* ViewController.swift */; };
 		CE25D45627F99B1D00B01D27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE25D45527F99B1D00B01D27 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		CE149FD5282D089B00159C2C /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		CE149FD7282E14DB00159C2C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		CE25D44927F99B1A00B01D27 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE25D44C27F99B1A00B01D27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE25D45027F99B1A00B01D27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2A40032803603200EAD554 /* ProfileViewController.swift */,
+				CE149FD7282E14DB00159C2C /* UIView+Extension.swift */,
 				CE149FD5282D089B00159C2C /* PostTableViewCell.swift */,
 				CE7E7F75282CFA6800545D1A /* Post.swift */,
 				CE7E7F73282C341500545D1A /* LogInViewController.swift */,
@@ -176,6 +179,7 @@
 				CE2A400028035E5200EAD554 /* TabBarViewController.swift in Sources */,
 				CEE5BDC828092E6F00A58808 /* InfoViewController.swift in Sources */,
 				CE2A40042803603200EAD554 /* ProfileViewController.swift in Sources */,
+				CE149FD8282E14DB00159C2C /* UIView+Extension.swift in Sources */,
 				CE2A40022803601200EAD554 /* FeedViewController.swift in Sources */,
 				CE25D44D27F99B1A00B01D27 /* AppDelegate.swift in Sources */,
 				CE7E7F74282C341500545D1A /* LogInViewController.swift in Sources */,

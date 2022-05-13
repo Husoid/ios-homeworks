@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "qwe")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         return tableView
     }()
     
@@ -39,9 +39,9 @@ class ProfileViewController: UIViewController {
         [profileHeadrVC, tableView] .forEach {view.addSubview($0)}
         
         NSLayoutConstraint.activate([
-            profileHeadrVC.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            profileHeadrVC.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            profileHeadrVC.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            profileHeadrVC.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileHeadrVC.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileHeadrVC.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             profileHeadrVC.heightAnchor.constraint(equalToConstant: 220),
             
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -62,7 +62,8 @@ extension ProfileViewController:UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "qwe", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        cell.addToCell(post: post[indexPath.row])
         return cell
     }
         
@@ -71,8 +72,8 @@ extension ProfileViewController:UITableViewDataSource {
 //MARK: - UITableViewDelegate
 
 extension ProfileViewController:UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        516
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        436
+//    }
     
 }
