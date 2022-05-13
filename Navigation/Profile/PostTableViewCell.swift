@@ -16,39 +16,41 @@ class PostTableViewCell: UITableViewCell {
         return cellView
     }()
     
-    private lazy var authorTextView:UITextView = {
-        let authorTextView = UITextView()
-        authorTextView.translatesAutoresizingMaskIntoConstraints = false
-        authorTextView.backgroundColor = .white
-        return authorTextView
+    private lazy var authorLabel:UILabel = {
+        let authorLabel = UILabel()
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
+        authorLabel.backgroundColor = .white
+        return authorLabel
     }()
     
-    private lazy var descriptionTextView:UITextView = {
-        let descriptionTextView = UITextView()
-        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTextView.backgroundColor = .white
-        return descriptionTextView
+    private lazy var descriptionLabel:UILabel = {
+        let descriptionLabel = UILabel()
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.backgroundColor = .white
+        descriptionLabel.numberOfLines = 0
+        return descriptionLabel
     }()
     
     private lazy var image:UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.backgroundColor = .black
         image.contentMode = .scaleAspectFit
         return image
     }()
     
-    private lazy var likesTextView:UITextView = {
-        let likesTextView = UITextView()
-        likesTextView.translatesAutoresizingMaskIntoConstraints = false
-        likesTextView.backgroundColor = .white
-        return likesTextView
+    private lazy var likesLabel:UILabel = {
+        let likesLabel = UILabel()
+        likesLabel.translatesAutoresizingMaskIntoConstraints = false
+        likesLabel.backgroundColor = .white
+        return likesLabel
     }()
     
-    private lazy var viewsTextView:UITextView = {
-        let viewsTextView = UITextView()
-        viewsTextView.translatesAutoresizingMaskIntoConstraints = false
-        viewsTextView.backgroundColor = .white
-        return viewsTextView
+    private lazy var viewsLabel:UILabel = {
+        let viewsLabel = UILabel()
+        viewsLabel.translatesAutoresizingMaskIntoConstraints = false
+        viewsLabel.backgroundColor = .white
+        return viewsLabel
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -61,11 +63,11 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func addToCell(post: Post) {
-        authorTextView.text = post.author
-        descriptionTextView.text = post.description
+        authorLabel.text = post.author
+        descriptionLabel.text = post.description
         image.image = post.image
-        likesTextView.text = "Likes: \(post.likes)"
-        viewsTextView.text = "Views: \(post.views)"
+        likesLabel.text = "Likes: \(post.likes)"
+        viewsLabel.text = "Views: \(post.views)"
         
     }
     
@@ -80,36 +82,35 @@ class PostTableViewCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
-        [authorTextView, descriptionTextView, image, likesTextView, viewsTextView] .forEach {cellView.addSubview($0)}
+        [authorLabel, descriptionLabel, image, likesLabel, viewsLabel] .forEach {cellView.addSubview($0)}
 
         NSLayoutConstraint.activate([
-            authorTextView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
-            authorTextView.topAnchor.constraint(equalTo: cellView.topAnchor),
-            authorTextView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-            authorTextView.heightAnchor.constraint(equalToConstant: 50),
+            authorLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
+            authorLabel.topAnchor.constraint(equalTo: cellView.topAnchor),
+            authorLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
+            authorLabel.heightAnchor.constraint(equalToConstant: 50),
 
             image.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
-            image.topAnchor.constraint(equalTo: authorTextView.bottomAnchor),
+            image.topAnchor.constraint(equalTo: authorLabel.bottomAnchor),
             image.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-//            image.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
             image.heightAnchor.constraint(equalToConstant: 300),
 
-            descriptionTextView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
-            descriptionTextView.topAnchor.constraint(equalTo: image.bottomAnchor),
-            descriptionTextView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-            descriptionTextView.heightAnchor.constraint(equalToConstant: 50),
+            descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: image.bottomAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
+//            descriptionTextView.heightAnchor.constraint(equalToConstant: 50),
 
-            likesTextView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
-            likesTextView.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor),
-            likesTextView.widthAnchor.constraint(equalToConstant: 70),
-            likesTextView.heightAnchor.constraint(equalToConstant: 30),
-            likesTextView.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
+            likesLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
+            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
+            likesLabel.widthAnchor.constraint(equalToConstant: 70),
+//            likesLabel.heightAnchor.constraint(equalToConstant: 30),
+            likesLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
             
-            viewsTextView.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor),
-            viewsTextView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-            viewsTextView.widthAnchor.constraint(equalToConstant: 70),
-            viewsTextView.heightAnchor.constraint(equalToConstant: 30),
-            viewsTextView.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
+            viewsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),
+            viewsLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
+            viewsLabel.widthAnchor.constraint(equalToConstant: 70),
+            viewsLabel.heightAnchor.constraint(equalToConstant: 30),
+            viewsLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
         ])
     }
 

@@ -72,8 +72,8 @@ extension ProfileViewController:UITableViewDataSource {
 //MARK: - UITableViewDelegate
 
 extension ProfileViewController:UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        436
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
     
 }
