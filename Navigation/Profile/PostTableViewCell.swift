@@ -20,6 +20,9 @@ class PostTableViewCell: UITableViewCell {
         let authorLabel = UILabel()
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.backgroundColor = .white
+        authorLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        authorLabel.textColor = .black
+        authorLabel.numberOfLines = 2
         return authorLabel
     }()
     
@@ -27,6 +30,8 @@ class PostTableViewCell: UITableViewCell {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.backgroundColor = .white
+        descriptionLabel.textColor = .systemGray
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
         descriptionLabel.numberOfLines = 0
         return descriptionLabel
     }()
@@ -42,6 +47,8 @@ class PostTableViewCell: UITableViewCell {
     private lazy var likesLabel:UILabel = {
         let likesLabel = UILabel()
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
+        likesLabel.textColor = .black
+        likesLabel.font = UIFont.systemFont(ofSize: 16)
         likesLabel.backgroundColor = .white
         return likesLabel
     }()
@@ -49,6 +56,9 @@ class PostTableViewCell: UITableViewCell {
     private lazy var viewsLabel:UILabel = {
         let viewsLabel = UILabel()
         viewsLabel.translatesAutoresizingMaskIntoConstraints = false
+        viewsLabel.textColor = .black
+        viewsLabel.font = UIFont.systemFont(ofSize: 16)
+        viewsLabel.textAlignment = .right
         viewsLabel.backgroundColor = .white
         return viewsLabel
     }()
@@ -83,32 +93,30 @@ class PostTableViewCell: UITableViewCell {
         ])
         
         [authorLabel, descriptionLabel, image, likesLabel, viewsLabel] .forEach {cellView.addSubview($0)}
-
+        
         NSLayoutConstraint.activate([
-            authorLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
-            authorLabel.topAnchor.constraint(equalTo: cellView.topAnchor),
-            authorLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-            authorLabel.heightAnchor.constraint(equalToConstant: 50),
+            authorLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 16),
+            authorLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 16),
+            authorLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -16),
 
             image.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
-            image.topAnchor.constraint(equalTo: authorLabel.bottomAnchor),
+            image.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 16),
             image.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-            image.heightAnchor.constraint(equalToConstant: 300),
+            image.heightAnchor.constraint(equalToConstant: contentView.bounds.width),
 
-            descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: image.bottomAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 16),
+            descriptionLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -16),
 
-            likesLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
-            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
-            likesLabel.widthAnchor.constraint(equalToConstant: 70),
-            likesLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
+            likesLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 16),
+            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            likesLabel.widthAnchor.constraint(equalToConstant: 100),
+            likesLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -16),
             
             viewsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),
-            viewsLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-            viewsLabel.widthAnchor.constraint(equalToConstant: 70),
-            viewsLabel.heightAnchor.constraint(equalToConstant: 30),
-            viewsLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
+            viewsLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -16),
+            viewsLabel.widthAnchor.constraint(equalToConstant: 100),
+            viewsLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -16),
         ])
     }
 

@@ -35,7 +35,7 @@ class LogInViewController: UIViewController {
         loginPasswordView.translatesAutoresizingMaskIntoConstraints = false
         loginPasswordView.layer.cornerRadius = 10
         loginPasswordView.layer.borderColor = UIColor.lightGray.cgColor
-        loginPasswordView.layer.borderWidth = 2
+        loginPasswordView.layer.borderWidth = 0.5
         loginPasswordView.clipsToBounds = true
         return loginPasswordView
     }()
@@ -44,7 +44,10 @@ class LogInViewController: UIViewController {
         let loginTextField = UITextField()
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         loginTextField.backgroundColor = .systemGray6
-        loginTextField.layer.borderWidth = 2
+        loginTextField.textColor = .black
+        loginTextField.font = UIFont.systemFont(ofSize: 16)
+        loginTextField.autocapitalizationType = .none
+        loginTextField.layer.borderWidth = 0.5
         loginTextField.layer.borderColor = UIColor.lightGray.cgColor
         loginTextField.clearsOnBeginEditing = true
         loginTextField.delegate = self
@@ -58,6 +61,9 @@ class LogInViewController: UIViewController {
         let passwordTextField = UITextField()
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.backgroundColor = .systemGray6
+        passwordTextField.textColor = .black
+        passwordTextField.font = UIFont.systemFont(ofSize: 16)
+        passwordTextField.autocapitalizationType = .none
         passwordTextField.clearsOnBeginEditing = true
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
@@ -71,7 +77,8 @@ class LogInViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
-        button.backgroundColor = UIColor(named: "ColorVC")
+        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        button.clipsToBounds = true
         button.setTitle("Войти", for: .normal)
         button.addTarget(self, action: #selector(goToProfileHederView), for: .touchUpInside)
         return button
@@ -138,10 +145,10 @@ class LogInViewController: UIViewController {
             imageVC.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             imageVC.widthAnchor.constraint(equalToConstant: 100),
             imageVC.heightAnchor.constraint(equalToConstant: 100),
-            imageVC.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 150),
+            imageVC.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 120),
             
             loginPasswordView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            loginPasswordView.topAnchor.constraint(equalTo: imageVC.bottomAnchor, constant: 150),
+            loginPasswordView.topAnchor.constraint(equalTo: imageVC.bottomAnchor, constant: 120),
             loginPasswordView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginPasswordView.heightAnchor.constraint(equalToConstant: 100),
             
