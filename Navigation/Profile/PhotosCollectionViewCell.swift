@@ -9,6 +9,12 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
+    private lazy var photoCell: UIImageView = {
+        let photoCell = UIImageView()
+        photoCell.translatesAutoresizingMaskIntoConstraints = false
+        return photoCell
+    }()
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         customCell()
@@ -19,7 +25,20 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
     
     private func customCell() {
-        contentView.layer.cornerRadius = 6
+        
+        contentView.addSubview(photoCell)
+        
+        NSLayoutConstraint.activate([
+            photoCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            photoCell.topAnchor.constraint(equalTo: contentView.topAnchor),
+            photoCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            photoCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+    
+    func addToCell(photo: Photo) {
+        photoCell.image = photo.image
+        
     }
     
 }

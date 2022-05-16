@@ -9,6 +9,8 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
     
+    private let photo = Photo.makePhoto()
+    
     private lazy var cellView:UIView = {
         let cellView = UIView()
         cellView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,11 +90,15 @@ class PhotosTableViewCell: UITableViewCell {
 
 extension PhotosTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        photo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell;()
+        cell.addToCell(photo: photo[indexPath.row])
+        cell.layer.cornerRadius = 6
+        cell.backgroundColor = .systemGray4
+        cell.clipsToBounds = true
         return cell
     }
     
