@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     private lazy var tableView:UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .lightGray
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
@@ -55,9 +56,8 @@ extension ProfileViewController:UITableViewDataSource {
             return post.count
         }
     }
+    
         
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
@@ -85,6 +85,10 @@ extension ProfileViewController:UITableViewDelegate {
         } else {
             return nil
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 220 : 0
     }
     
     

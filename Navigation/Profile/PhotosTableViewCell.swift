@@ -33,11 +33,17 @@ class PhotosTableViewCell: UITableViewCell {
         return nextImage
     }()
     
-//    private lazy var photoCollection: UICollectionView = {
-//        let photoCollection = UICollectionView()
-//        photoCollection.translatesAutoresizingMaskIntoConstraints = false
-//        return photoCollection
-//    }()
+    private lazy var photoCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        let photoCollection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        photoCollection.translatesAutoresizingMaskIntoConstraints = false
+        photoCollection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier)
+        photoCollection.dataSource = self
+        photoCollection.delegate = self
+        return photoCollection
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,26 +65,49 @@ class PhotosTableViewCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
-        [photoLabel, nextImage] .forEach {cellView.addSubview($0)}
+        [photoLabel, nextImage, photoCollection] .forEach {cellView.addSubview($0)}
         
         NSLayoutConstraint.activate([
             photoLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 12),
             photoLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 12),
-            photoLabel.widthAnchor.constraint(equalToConstant: 50),
-            photoLabel.heightAnchor.constraint(equalToConstant: 60),
+            photoLabel.widthAnchor.constraint(equalToConstant: 80),
             
-            nextImage.topAnchor.constraint(equalTo: photoLabel.bottomAnchor, constant: 12),
+            nextImage.centerYAnchor.constraint(equalTo: photoLabel.centerYAnchor),
             nextImage.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -12),
             nextImage.widthAnchor.constraint(equalToConstant: 30),
             nextImage.heightAnchor.constraint(equalToConstant: 30),
-            nextImage.bottomAnchor.constraint(equalTo: cellView.bottomAnchor)
             
-//            photoCollection.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 12),
-//            photoCollection.topAnchor.constraint(equalTo: photoLabel.bottomAnchor, constant: 12),
-//            photoCollection.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -12),
-//            photoCollection.heightAnchor.constraint(equalToConstant: 100),
-//            photoCollection.bottomAnchor.constraint(equalTo: cellView.bottomAnchor)
+            photoCollection.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 12),
+            photoCollection.topAnchor.constraint(equalTo: photoLabel.bottomAnchor, constant: 12),
+            photoCollection.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -12),
+            photoCollection.heightAnchor.constraint(equalToConstant: (contentView.bounds.width - 48) / 4),
+            photoCollection.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -12)
         ])
     }
 
+}
+
+//MARK: - UICollectionViewDataSource
+
+extension PhotosTableViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell;()
+        return cell
+    }
+    
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (cellView.bounds.width - 48) / 4
+        return CGSize(width: width, height: width)
+    }
+        
 }
