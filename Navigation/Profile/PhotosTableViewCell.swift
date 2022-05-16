@@ -12,7 +12,6 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var cellView:UIView = {
         let cellView = UIView()
         cellView.translatesAutoresizingMaskIntoConstraints = false
-        cellView.backgroundColor = .blue
         return cellView
     }()
 
@@ -22,14 +21,12 @@ class PhotosTableViewCell: UITableViewCell {
         photoLabel.textColor = .black
         photoLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         photoLabel.text = "Фото"
-        photoLabel.backgroundColor = .red
         return photoLabel
     }()
     
     private lazy var nextImage: UIImageView = {
         let nextImage = UIImageView()
         nextImage.translatesAutoresizingMaskIntoConstraints = false
-        nextImage.backgroundColor = .systemGray
         return nextImage
     }()
     

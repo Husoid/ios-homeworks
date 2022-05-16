@@ -19,8 +19,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
     
     private func customCell() {
-        contentView.backgroundColor = .red
-        contentView.layer.cornerRadius = 5
+        contentView.layer.cornerRadius = 6
     }
     
 }
