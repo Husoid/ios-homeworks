@@ -57,10 +57,10 @@ extension ProfileViewController:UITableViewDataSource {
         }
     }
     
-        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
+            cell.delegate = self
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
@@ -68,7 +68,7 @@ extension ProfileViewController:UITableViewDataSource {
             return cell
             }
     }
-        
+    
 }
 
 //MARK: - UITableViewDelegate
@@ -91,5 +91,15 @@ extension ProfileViewController:UITableViewDelegate {
         section == 0 ? 220 : 0
     }
     
-    
+}
+
+//MARK: - PhotosTableViewCellDelegate
+
+extension ProfileViewController: PhotosTableViewCellDelegate {
+    func buttonPressed() {
+        let detailVC = PhotosViewController()
+//        detailVC.title = "srffds"
+//        navigationController?.navigationItem.title = "sdads"
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }

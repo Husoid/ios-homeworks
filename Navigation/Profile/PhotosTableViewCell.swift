@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol PhotosTableViewCellDelegate: AnyObject {
+    func buttonPressed()
+}
+
 class PhotosTableViewCell: UITableViewCell {
+    
+    weak var delegate: PhotosTableViewCellDelegate?
     
     private let photo = Photo.makePhoto()
     
@@ -26,10 +32,12 @@ class PhotosTableViewCell: UITableViewCell {
         return photoLabel
     }()
     
-    private lazy var nextImage: UIImageView = {
-        let nextImage = UIImageView()
-        nextImage.translatesAutoresizingMaskIntoConstraints = false
-        return nextImage
+    private lazy var nextButton: UIButton = {
+        let nextButton = UIButton()
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.setBackgroundImage(UIImage(named: "arrow"), for: .normal)
+        nextButton.addTarget(self, action: #selector(detailVCDelegate), for: .touchUpInside)
+        return nextButton
     }()
     
     private lazy var photoCollection: UICollectionView = {
@@ -53,6 +61,10 @@ class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc private func detailVCDelegate() {
+        delegate?.buttonPressed()
+    }
+    
     private func layout() {
         
         contentView.addSubview(cellView)
@@ -64,17 +76,17 @@ class PhotosTableViewCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
-        [photoLabel, nextImage, photoCollection] .forEach {cellView.addSubview($0)}
+        [photoLabel, nextButton, photoCollection] .forEach {cellView.addSubview($0)}
         
         NSLayoutConstraint.activate([
             photoLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 12),
             photoLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 12),
             photoLabel.widthAnchor.constraint(equalToConstant: 80),
             
-            nextImage.centerYAnchor.constraint(equalTo: photoLabel.centerYAnchor),
-            nextImage.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -12),
-            nextImage.widthAnchor.constraint(equalToConstant: 30),
-            nextImage.heightAnchor.constraint(equalToConstant: 30),
+            nextButton.centerYAnchor.constraint(equalTo: photoLabel.centerYAnchor),
+            nextButton.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -12),
+            nextButton.widthAnchor.constraint(equalToConstant: 30),
+            nextButton.heightAnchor.constraint(equalToConstant: 30),
             
             photoCollection.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 12),
             photoCollection.topAnchor.constraint(equalTo: photoLabel.bottomAnchor, constant: 12),
