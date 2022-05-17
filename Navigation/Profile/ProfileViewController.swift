@@ -98,8 +98,6 @@ extension ProfileViewController:UITableViewDelegate {
 extension ProfileViewController: PhotosTableViewCellDelegate {
     func buttonPressed() {
         let detailVC = PhotosViewController()
-//        detailVC.title = "srffds"
-//        navigationController?.navigationItem.title = "sdads"
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
