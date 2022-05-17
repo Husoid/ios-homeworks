@@ -68,7 +68,6 @@ extension ProfileViewController:UITableViewDataSource {
             return cell
             }
     }
-    
 }
 
 //MARK: - UITableViewDelegate
@@ -77,7 +76,6 @@ extension ProfileViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
@@ -90,7 +88,6 @@ extension ProfileViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         section == 0 ? 220 : 0
     }
-    
 }
 
 //MARK: - PhotosTableViewCellDelegate

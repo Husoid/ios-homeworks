@@ -59,14 +59,11 @@ class FeedViewController: UIViewController {
             stackView.heightAnchor.constraint(equalToConstant: 110),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-    
     }
     
     @objc private func clik() {
         let postVC = PostViewController()
         postVC.title = post.title
         navigationController?.pushViewController(postVC, animated: true)
-        
     }
-
 }

@@ -38,7 +38,5 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     func addToCell(photo: Photo) {
         photoCell.image = photo.image
-        
     }
-    
 }

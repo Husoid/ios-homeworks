@@ -28,8 +28,11 @@ class PhotosViewController: UIViewController {
         view.backgroundColor = .white
         title = "Фото галерея"
         navigationController?.navigationBar.isHidden = false
-        
         layout()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func layout() {

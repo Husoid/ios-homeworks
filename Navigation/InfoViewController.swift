@@ -23,7 +23,6 @@ class InfoViewController: UIViewController {
         button.addTarget(self, action: #selector(action), for: .touchUpInside)
         view.addSubview(button)
     }
-    
 
     @objc private func action() {
         let alert = UIAlertController(title: "Сообщение", message: "Дошел до конца домашней работы", preferredStyle: .alert)
@@ -38,7 +37,5 @@ class InfoViewController: UIViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: true)
-        
     }
-
 }

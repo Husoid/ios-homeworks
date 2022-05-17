@@ -34,5 +34,4 @@ struct Photo {
         photo.append(Photo(image: UIImage(named: "photo_20")!))
         return photo
     }
-    
 }

@@ -87,7 +87,6 @@ class LogInViewController: UIViewController {
     @objc private func goToProfileHederView() {
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: true)
-        
     }
 
     override func viewDidLoad() {
@@ -96,7 +95,6 @@ class LogInViewController: UIViewController {
         
         addElementToLoginViewController()
         addElementToLoginPasswordView()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,7 +155,6 @@ class LogInViewController: UIViewController {
             button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             button.heightAnchor.constraint(equalToConstant: 50),
             button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        
         ])
     }
     
@@ -176,10 +173,8 @@ class LogInViewController: UIViewController {
             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor),
             passwordTextField.trailingAnchor.constraint(equalTo: loginPasswordView.trailingAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
-            
         ])
     }
-
 }
 
 // MARK: - UITextFieldDelegate
@@ -189,5 +184,4 @@ extension LogInViewController: UITextFieldDelegate {
         view.endEditing(true)
         return true
     }
-    
 }

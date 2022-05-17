@@ -95,7 +95,6 @@ class PhotosTableViewCell: UITableViewCell {
             photoCollection.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -12)
         ])
     }
-
 }
 
 //MARK: - UICollectionViewDataSource
@@ -113,7 +112,6 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
         cell.clipsToBounds = true
         return cell
     }
-    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
@@ -124,5 +122,4 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
         let width = (cellView.bounds.width - 48) / 4
         return CGSize(width: width, height: width)
     }
-        
 }

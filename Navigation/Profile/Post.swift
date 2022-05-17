@@ -25,5 +25,4 @@ struct Post {
         post.append(Post(author: "Руслан. Тюмень - самый лучший город на земле.", description: "Катаемся на квадроциклах", image: UIImage(named: "post_7")!, likes: 50, views: 17))
         return post
     }
-    
 }
