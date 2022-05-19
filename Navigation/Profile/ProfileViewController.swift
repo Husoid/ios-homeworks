@@ -10,7 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     private let post = Post.makePost()
-
+    
     private lazy var tableView:UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +86,7 @@ extension ProfileViewController:UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        section == 0 ? 220 : 0
+        section == 0 ? 222 : 0
     }
 }
 
