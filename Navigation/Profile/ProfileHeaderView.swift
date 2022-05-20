@@ -11,8 +11,28 @@ class ProfileHeaderView: UIView {
     
     private var widthAvatarView = NSLayoutConstraint()
     private var heigthAvatarView = NSLayoutConstraint()
+    private var leadingAvatarView = NSLayoutConstraint()
+    private var topAvatarView = NSLayoutConstraint()
     
-    lazy var imageView: UIImageView = {
+    private lazy var viewFoAnimate: UIView = {
+        let viewFoAnimate = UIView()
+        viewFoAnimate.translatesAutoresizingMaskIntoConstraints = false
+        viewFoAnimate.backgroundColor = .black
+        viewFoAnimate.alpha = 0
+        return viewFoAnimate
+    }()
+    
+    private lazy var cancelShowAvatar: UIImageView = {
+        let cancelShowAvatar = UIImageView()
+        cancelShowAvatar.translatesAutoresizingMaskIntoConstraints = false
+        cancelShowAvatar.image = UIImage(named: "cancel")
+        cancelShowAvatar.clipsToBounds = true
+        cancelShowAvatar.isUserInteractionEnabled = true
+        cancelShowAvatar.alpha = 0
+        return cancelShowAvatar
+    }()
+    
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 3
@@ -85,31 +105,41 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .lightGray
-//        isUserInteractionEnabled = true
-        [text, textStatus, textFieldStatus, button, imageView] .forEach {addSubview($0)}
-        
+        [text, textStatus, textFieldStatus, button, viewFoAnimate, imageView, cancelShowAvatar] .forEach {addSubview($0)}
         setupGestures()
         
         heigthAvatarView = imageView.heightAnchor.constraint(equalToConstant: 100)
         widthAvatarView = imageView.widthAnchor.constraint(equalToConstant: 100)
+        leadingAvatarView = imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
+        topAvatarView = imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16)
         
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            leadingAvatarView,
+            topAvatarView,
             widthAvatarView,
             heigthAvatarView,
 
-            text.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-            text.topAnchor.constraint(equalTo: imageView.topAnchor),
+            viewFoAnimate.leadingAnchor.constraint(equalTo: leadingAnchor),
+            viewFoAnimate.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            viewFoAnimate.trailingAnchor.constraint(equalTo: trailingAnchor),
+            viewFoAnimate.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+            
+            cancelShowAvatar.topAnchor.constraint(equalTo: viewFoAnimate.topAnchor, constant: 20),
+            cancelShowAvatar.trailingAnchor.constraint(equalTo: viewFoAnimate.trailingAnchor, constant: -20),
+            cancelShowAvatar.heightAnchor.constraint(equalToConstant: 30),
+            cancelShowAvatar.widthAnchor.constraint(equalToConstant: 30),
+            
+            text.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 132),
+            text.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             text.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             text.heightAnchor.constraint(equalToConstant: 30),
 
-            textStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-            textStatus.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -32),
+            textStatus.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 132),
+            textStatus.bottomAnchor.constraint(equalTo: topAnchor, constant: 94),
             textStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             textStatus.heightAnchor.constraint(equalToConstant: 30),
 
-            textFieldStatus.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
+            textFieldStatus.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 132),
             textFieldStatus.topAnchor.constraint(equalTo: textStatus.bottomAnchor, constant: 16),
             textFieldStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             textFieldStatus.heightAnchor.constraint(equalToConstant: 40),
@@ -131,33 +161,49 @@ class ProfileHeaderView: UIView {
     }
     
     private func setupGestures() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
-        imageView.addGestureRecognizer(tapGesture)
+        let tapGestureShowAvatar = UITapGestureRecognizer(target: self, action: #selector(tapActionShow))
+        imageView.addGestureRecognizer(tapGestureShowAvatar)
+        
+        let tapGestureHidenAvatar = UITapGestureRecognizer(target: self, action: #selector(tapActionHiden))
+        cancelShowAvatar.addGestureRecognizer(tapGestureHidenAvatar)
     }
     
-    @objc private func tapAction() {
-//        print("tydyhdfshdfhhdfhdfh")
-        imageView.layer.cornerRadius = 20
-        let blackView = UIView()
-        blackView.backgroundColor = .black
-        blackView.alpha = 0.1
-        addSubview(blackView)
-        blackView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-//        let rotateAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
-//        rotateAnimation.valueFunction = CAValueFunction(name: CAValueFunctionName.rotateZ)
-//        rotateAnimation.fromValue = 0
-//        rotateAnimation.toValue = 1.75 * Float.pi
-//
-//        let positionAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.position))
-//        positionAnimation.fromValue = redView.center
-//        positionAnimation.toValue = CGPoint(x: view.bounds.width - 100, y: redView.center.y)
-//
-//        let groupAnimation = CAAnimationGroup()
-//        groupAnimation.duration = 2.0
-//        groupAnimation.animations = [rotateAnimation, positionAnimation]
-//        groupAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-//        redView.layer.add(groupAnimation, forKey: nil)
-//        redView.transform = CGAffineTransform(rotationAngle: CGFloat(1.75 * Float.pi))
-//        redView.layer.position = CGPoint(x: view.bounds.width - 100, y: redView.center.y)
+    @objc private func tapActionShow() {
+        
+        UIView.animateKeyframes(withDuration: 0.8, delay: 0) {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.7) {
+                self.viewFoAnimate.alpha = 0.5
+                self.heigthAvatarView.constant = UIScreen.main.bounds.height
+                self.widthAvatarView.constant = UIScreen.main.bounds.width
+                self.leadingAvatarView.constant = 0
+                self.topAvatarView.constant = 0
+                self.imageView.layer.cornerRadius = 0
+                self.imageView.contentMode = .scaleAspectFit
+                self.layoutIfNeeded()
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.7, relativeDuration: 1) {
+                self.cancelShowAvatar.alpha = 1
+                self.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @objc private func tapActionHiden() {
+        
+        UIView.animateKeyframes(withDuration: 0.9, delay: 0) {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.3) {
+                self.cancelShowAvatar.alpha = 0
+                self.layoutIfNeeded()
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.8) {
+                self.viewFoAnimate.alpha = 0
+                self.heigthAvatarView.constant = 100
+                self.widthAvatarView.constant = 100
+                self.leadingAvatarView.constant = 16
+                self.topAvatarView.constant = 16
+                self.imageView.layer.cornerRadius = 50
+                self.layoutIfNeeded()
+            }
+        }
     }
 }
