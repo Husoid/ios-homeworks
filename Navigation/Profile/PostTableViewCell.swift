@@ -78,7 +78,6 @@ class PostTableViewCell: UITableViewCell {
         image.image = post.image
         likesLabel.text = "Likes: \(post.likes)"
         viewsLabel.text = "Views: \(post.views)"
-        
     }
     
     private func layout() {
@@ -119,6 +118,4 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -16),
         ])
     }
-
-    
 }

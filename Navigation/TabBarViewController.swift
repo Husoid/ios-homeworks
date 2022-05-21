@@ -15,7 +15,6 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarController()
-
     }
     
     private func setupTabBarController() {
@@ -33,5 +32,4 @@ class TabBarViewController: UITabBarController {
         
         viewControllers = [navControllerFeed, navControllerProfile]
     }
-    
 }

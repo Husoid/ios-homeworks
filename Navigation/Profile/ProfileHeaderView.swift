@@ -57,7 +57,7 @@ class ProfileHeaderView: UIView {
         imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
         return imageView
-    } ()
+    }()
     
     private lazy var text: UITextView = {
         let text = UITextView()
@@ -67,7 +67,7 @@ class ProfileHeaderView: UIView {
         text.backgroundColor = .lightGray
         text.font = UIFont.boldSystemFont(ofSize: 18)
         return text
-    } ()
+    }()
     
     private lazy var textStatus: UITextView = {
         let text = UITextView()
@@ -77,7 +77,7 @@ class ProfileHeaderView: UIView {
         text.backgroundColor = .lightGray
         text.font = UIFont.systemFont(ofSize: 14)
         return text
-    } ()
+    }()
     
     private lazy var textFieldStatus: UITextField = {
         let text = UITextField()
@@ -92,7 +92,7 @@ class ProfileHeaderView: UIView {
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
         text.leftViewMode = .always
         return text
-    } ()
+    }()
     
     private lazy var button: UIButton = {
         let button = UIButton()
@@ -108,7 +108,7 @@ class ProfileHeaderView: UIView {
         button.layer.shadowOpacity = 0.7
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
-    } ()
+    }()
     
     private lazy var statusText:String = ""
     

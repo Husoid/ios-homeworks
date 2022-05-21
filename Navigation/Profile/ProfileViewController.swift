@@ -14,9 +14,11 @@ class ProfileViewController: UIViewController {
     private lazy var tableView:UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .lightGray
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
     }()
 
@@ -42,16 +44,30 @@ class ProfileViewController: UIViewController {
 //MARK: - UITableViewDataSource
 
 extension ProfileViewController:UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return post.count
+        if section == 0 {
+            return 1
+        } else {
+            return post.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-        cell.addToCell(post: post[indexPath.row])
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
+            cell.delegate = self
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+            cell.addToCell(post: post[indexPath.row])
+            return cell
+            }
     }
-        
 }
 
 //MARK: - UITableViewDelegate
@@ -61,10 +77,24 @@ extension ProfileViewController:UITableViewDelegate {
         UITableView.automaticDimension
     }
     
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        ProfileHeaderView()
+        if section == 0 {
+            return ProfileHeaderView()
+        } else {
+            return nil
+        }
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 220 : 0
+    }
+}
+
+//MARK: - PhotosTableViewCellDelegate
+
+extension ProfileViewController: PhotosTableViewCellDelegate {
+    func buttonPressed() {
+        let detailVC = PhotosViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }

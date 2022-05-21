@@ -13,7 +13,6 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .gray
         makeBarItem()
-
     }
     
     private func makeBarItem() {
@@ -25,7 +24,5 @@ class PostViewController: UIViewController {
         let infoVC = InfoViewController()
         infoVC.title = "Инфо"
         navigationController?.pushViewController(infoVC, animated: true)
-        
     }
-
 }
