@@ -45,8 +45,8 @@ class ProfileHeaderView: UIView {
         return imageView
     }()
     
-    private lazy var text: UITextView = {
-        let text = UITextView()
+    private lazy var text: UILabel = {
+        let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.text = "Хусаинов Руслан"
         text.textColor = .black
@@ -55,8 +55,8 @@ class ProfileHeaderView: UIView {
         return text
     }()
     
-    private lazy var textStatus: UITextView = {
-        let text = UITextView()
+    private lazy var textStatus: UILabel = {
+        let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.text = "Waiting for something..."
         text.textColor = .gray
@@ -99,7 +99,7 @@ class ProfileHeaderView: UIView {
     private lazy var statusText:String = ""
     
     @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text!
+            statusText = textField.text!
     }
     
     override init(frame: CGRect) {
@@ -157,7 +157,9 @@ class ProfileHeaderView: UIView {
     }
     
     @objc private func buttonPressed() {
-        textStatus.text = statusText
+        if textFieldStatus.text != "" {
+            textStatus.text = statusText
+        }
     }
     
     private func setupGestures() {
