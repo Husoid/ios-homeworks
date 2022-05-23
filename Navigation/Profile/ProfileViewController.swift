@@ -64,6 +64,7 @@ extension ProfileViewController:UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+            cell.delegate = self
             cell.addToCell(post: post[indexPath.row])
             return cell
             }
@@ -97,4 +98,15 @@ extension ProfileViewController: PhotosTableViewCellDelegate {
         let detailVC = PhotosViewController()
         navigationController?.pushViewController(detailVC, animated: true)
     }
+}
+
+//MARK: - CustomPostTableleCellDelegate
+
+extension ProfileViewController: CustomPostTableleCellDelegate {
+    func clickDelegate(like: UILabel) {
+        let str = like.text
+        let countLike = String(str!.dropFirst(7))
+        like.text = "Likes: \((Int(countLike) ?? 0) + 1)"
+    }
+    
 }

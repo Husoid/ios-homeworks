@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CustomPostTableleCellDelegate: AnyObject {
+    func clickDelegate(like: UILabel)
+}
+
 class PostTableViewCell: UITableViewCell {
+    
+    weak var delegate: CustomPostTableleCellDelegate?
     
     private lazy var cellView:UIView = {
         let cellView = UIView()
@@ -77,7 +83,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     @objc private func click() {
-        print("dsqdfasf")
+        delegate?.clickDelegate(like: likesLabel)
     }
     
     func addToCell(post: Post) {
