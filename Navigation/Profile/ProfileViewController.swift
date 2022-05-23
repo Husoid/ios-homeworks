@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private let post = Post.makePost()
+    private var post = Post.makePost()
     
     private lazy var tableView:UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -65,6 +65,7 @@ extension ProfileViewController:UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
             cell.delegate = self
+            cell.tag = indexPath.row
             cell.addToCell(post: post[indexPath.row])
             return cell
             }
@@ -103,6 +104,13 @@ extension ProfileViewController: PhotosTableViewCellDelegate {
 //MARK: - CustomPostTableleCellDelegate
 
 extension ProfileViewController: CustomPostTableleCellDelegate {
+    func clickDelegate(like: UILabel, cell: PostTableViewCell) {
+        let str = like.text
+        let countLike = String(str!.dropFirst(7))
+        like.text = "Likes: \((Int(countLike) ?? 0) + 1)"
+        post[cell.tag].likes += 1
+    }
+    
     func clickDelegate(like: UILabel) {
         let str = like.text
         let countLike = String(str!.dropFirst(7))

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CustomPostTableleCellDelegate: AnyObject {
-    func clickDelegate(like: UILabel)
+    func clickDelegate(like: UILabel, cell: PostTableViewCell)
 }
 
 class PostTableViewCell: UITableViewCell {
@@ -83,7 +83,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     @objc private func click() {
-        delegate?.clickDelegate(like: likesLabel)
+        delegate?.clickDelegate(like: likesLabel, cell: self)
     }
     
     func addToCell(post: Post) {
