@@ -29,6 +29,8 @@ class PhotosTableViewCell: UITableViewCell {
         photoLabel.textColor = .black
         photoLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         photoLabel.text = "Фото"
+        photoLabel.layer.cornerRadius = 6
+        photoLabel.clipsToBounds = true
         return photoLabel
     }()
     
@@ -108,7 +110,7 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell;()
         cell.addToCell(photo: photo[indexPath.row])
         cell.layer.cornerRadius = 6
-        cell.backgroundColor = .systemGray4
+        cell.backgroundColor = .white
         cell.clipsToBounds = true
         return cell
     }
