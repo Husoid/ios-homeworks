@@ -50,6 +50,10 @@ class PostTableViewCell: UITableViewCell {
         likesLabel.textColor = .black
         likesLabel.font = UIFont.systemFont(ofSize: 16)
         likesLabel.backgroundColor = .white
+        
+        let tapAction = UITapGestureRecognizer(target: self, action: #selector(click))
+        likesLabel.isUserInteractionEnabled = true
+        likesLabel.addGestureRecognizer(tapAction)
         return likesLabel
     }()
     
@@ -70,6 +74,10 @@ class PostTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func click() {
+        print("dsqdfasf")
     }
     
     func addToCell(post: Post) {
