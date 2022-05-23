@@ -12,7 +12,7 @@ struct Post {
     let description: String
     let image: UIImage
     var likes: Int
-    let views: Int
+    var views: Int
     
     static func makePost() -> [Post] {
         var post = [Post]()

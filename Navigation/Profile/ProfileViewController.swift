@@ -90,6 +90,14 @@ extension ProfileViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         section == 0 ? 222 : 0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let countViews = post[indexPath.row].views
+        post[indexPath.row].views = countViews + 1
+        let detailVC =  DetailPostViewController()
+        detailVC.addToDetailPostVC(post: post[indexPath.row])
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 //MARK: - PhotosTableViewCellDelegate
