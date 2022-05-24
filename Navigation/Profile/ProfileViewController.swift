@@ -98,6 +98,24 @@ extension ProfileViewController:UITableViewDelegate {
         detailVC.addToDetailPostVC(post: post[indexPath.row])
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        var deleteButton: UITableViewRowAction = {
+            
+            let deleteButton = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
+                self.post.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            deleteButton.backgroundColor = .systemGray
+            deleteButton.title = "Удалить"
+            return deleteButton
+        }()
+        
+        return [deleteButton]
+    }
 }
 
 //MARK: - PhotosTableViewCellDelegate
@@ -119,10 +137,10 @@ extension ProfileViewController: CustomPostTableleCellDelegate {
         post[cell.tag].likes += 1
     }
     
-    func clickDelegate(like: UILabel) {
-        let str = like.text
-        let countLike = String(str!.dropFirst(7))
-        like.text = "Likes: \((Int(countLike) ?? 0) + 1)"
-    }
+//    func clickDelegate(like: UILabel) {
+//        let str = like.text
+//        let countLike = String(str!.dropFirst(7))
+//        like.text = "Likes: \((Int(countLike) ?? 0) + 1)"
+//    }
     
 }

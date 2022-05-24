@@ -44,9 +44,9 @@ class DetailPostViewController: UIViewController {
         likesLabel.font = UIFont.systemFont(ofSize: 16)
         likesLabel.backgroundColor = .white
         
-//        let tapAction = UITapGestureRecognizer(target: self, action: #selector(click))
-//        likesLabel.isUserInteractionEnabled = true
-//        likesLabel.addGestureRecognizer(tapAction)
+        let tapAction = UITapGestureRecognizer(target: self, action: #selector(click))
+        likesLabel.isUserInteractionEnabled = true
+        likesLabel.addGestureRecognizer(tapAction)
         return likesLabel
     }()
     
@@ -66,6 +66,12 @@ class DetailPostViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         layout()
 
+    }
+    
+    @objc private func click() {
+        let str = likesLabel.text
+        let countLike = String(str!.dropFirst(7))
+        likesLabel.text = "Likes: \((Int(countLike) ?? 0) + 1)"
     }
     
     override func viewWillDisappear(_ animated: Bool) {

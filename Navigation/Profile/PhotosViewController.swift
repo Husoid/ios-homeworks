@@ -112,16 +112,15 @@ class PhotosViewController: UIViewController {
             }
             UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.9) {
                 self.viewFoAnimate.alpha = 0
-                self.heigthAvatarView.constant = 0
-                self.widthAvatarView.constant = 0
-                self.leadingAvatarView.constant = 0
-                self.topAvatarView.constant = 0
+//                self.heigthAvatarView.constant = 0
+//                self.widthAvatarView.constant = 0
+//                self.leadingAvatarView.constant = 0
+//                self.topAvatarView.constant = 0
                 self.detailImage.alpha = 0
                 self.view.layoutIfNeeded()
             }
         }
     }
-    
 }
 
 //MARK: - UICollectionViewDataSource
@@ -140,7 +139,6 @@ extension PhotosViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        
         detailImage.image = photo[indexPath.row].image
         
         UIView.animateKeyframes(withDuration: 0.8, delay: 0) {
@@ -149,7 +147,7 @@ extension PhotosViewController: UICollectionViewDataSource {
                 self.heigthAvatarView.constant = UIScreen.main.bounds.height
                 self.widthAvatarView.constant = UIScreen.main.bounds.width
                 self.leadingAvatarView.constant = 0
-                self.topAvatarView.constant = 0
+                self.topAvatarView.constant = -50
                 self.detailImage.layer.cornerRadius = 0
                 self.detailImage.alpha = 1
                 self.detailImage.contentMode = .scaleAspectFit
@@ -160,7 +158,6 @@ extension PhotosViewController: UICollectionViewDataSource {
                 self.view.layoutIfNeeded()
             }
         }
-    
     }
 }
 
