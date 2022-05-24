@@ -197,7 +197,7 @@ class ProfileHeaderView: UIView {
                 self.cancelShowAvatar.alpha = 0
                 self.layoutIfNeeded()
             }
-            UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.8) {
+            UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.9) {
                 self.viewFoAnimate.alpha = 0
                 self.heigthAvatarView.constant = 100
                 self.widthAvatarView.constant = 100
