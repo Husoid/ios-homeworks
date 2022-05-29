@@ -21,6 +21,11 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
     }()
+    
+    override func viewWillAppear(_ animated:Bool) {
+       super.viewWillAppear(animated)
+       tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
