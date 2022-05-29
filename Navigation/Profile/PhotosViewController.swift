@@ -51,6 +51,11 @@ class PhotosViewController: UIViewController {
         return photoCollection
     }()
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        layout()
+//    }
+    
     override func viewDidLoad() {
     
         super.viewDidLoad()
@@ -105,6 +110,9 @@ class PhotosViewController: UIViewController {
     
     @objc private func tapActionHiden() {
         
+        navigationController?.navigationBar.isHidden = false
+        view.setNeedsLayout()
+        
         UIView.animateKeyframes(withDuration: 0.9, delay: 0) {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.3) {
                 self.cancelShowPhoto.alpha = 0
@@ -140,6 +148,8 @@ extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         detailImage.image = photo[indexPath.row].image
+        navigationController?.navigationBar.isHidden = true
+        view.setNeedsLayout()
         
         UIView.animateKeyframes(withDuration: 0.8, delay: 0) {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.7) {
