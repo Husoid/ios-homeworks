@@ -45,8 +45,8 @@ class ProfileHeaderView: UIView {
         return imageView
     }()
     
-    private lazy var text: UITextView = {
-        let text = UITextView()
+    private lazy var text: UILabel = {
+        let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.text = "Хусаинов Руслан"
         text.textColor = .black
@@ -55,8 +55,8 @@ class ProfileHeaderView: UIView {
         return text
     }()
     
-    private lazy var textStatus: UITextView = {
-        let text = UITextView()
+    private lazy var textStatus: UILabel = {
+        let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.text = "Waiting for something..."
         text.textColor = .gray
@@ -74,6 +74,7 @@ class ProfileHeaderView: UIView {
         text.layer.cornerRadius = 12
         text.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         text.textColor = .black
+        text.isUserInteractionEnabled = true 
         text.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
         text.leftViewMode = .always
@@ -99,7 +100,7 @@ class ProfileHeaderView: UIView {
     private lazy var statusText:String = ""
     
     @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text!
+            statusText = textField.text!
     }
     
     override init(frame: CGRect) {
@@ -157,7 +158,21 @@ class ProfileHeaderView: UIView {
     }
     
     @objc private func buttonPressed() {
-        textStatus.text = statusText
+        if textFieldStatus.text != "" {
+            textStatus.text = statusText
+        } else {
+            vibration(viewForAnimate: textFieldStatus)
+        }
+    }
+    
+    private func vibration(viewForAnimate: UIView) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: viewForAnimate.center.x - 10, y: viewForAnimate.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: viewForAnimate.center.x + 10, y: viewForAnimate.center.y))
+        viewForAnimate.layer.add(animation, forKey: "position")
     }
     
     private func setupGestures() {
@@ -195,7 +210,7 @@ class ProfileHeaderView: UIView {
                 self.cancelShowAvatar.alpha = 0
                 self.layoutIfNeeded()
             }
-            UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.8) {
+            UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.9) {
                 self.viewFoAnimate.alpha = 0
                 self.heigthAvatarView.constant = 100
                 self.widthAvatarView.constant = 100

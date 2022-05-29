@@ -10,6 +10,8 @@ import UIKit
 class LogInViewController: UIViewController {
     
     private var nc = NotificationCenter.default
+    private let password = "Qwerty123"
+    private let login = "husoid@mail.ru"
     
     private lazy var scrollView:UIScrollView = {
         let scrollView = UIScrollView()
@@ -84,9 +86,57 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private lazy var notLongPassword:UILabel = {
+        let notLongPassword = UILabel()
+        notLongPassword.translatesAutoresizingMaskIntoConstraints = false
+        return notLongPassword
+    }()
+    
     @objc private func goToProfileHederView() {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        
+//        var pass = passwordTextField.text
+        if loginTextField.text == "" || passwordTextField.text == "" {
+            if loginTextField.text == "" && passwordTextField.text == "" {
+                vibration(viewForAnimate: loginTextField)
+                vibration(viewForAnimate: passwordTextField)
+            } else if passwordTextField.text == "" {
+                vibration(viewForAnimate: passwordTextField)
+            } else {
+                vibration(viewForAnimate: loginTextField)
+            }
+        } else if validateEmail(enteredEmail: loginTextField.text!) == false {
+            Messadge(message: "Введен не коректный Email")
+        } else if passwordTextField.text!.count < 8 {
+            notLongPassword.text = "Длинна пароля менее 8 символов"
+        } else if passwordTextField.text != password || loginTextField.text != login {
+            Messadge(message: "Введен не корректный логин или пароль, попробуйте еще раз")
+        } else {
+            let profileVC = ProfileViewController()
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+    
+    private func Messadge(message: String) {
+        let alert = UIAlertController(title: "Сообщение", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default) { _ in}
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    private func vibration(viewForAnimate: UIView) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: viewForAnimate.center.x - 10, y: viewForAnimate.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: viewForAnimate.center.x + 10, y: viewForAnimate.center.y))
+        viewForAnimate.layer.add(animation, forKey: "position")
+    }
+    
+    private func validateEmail(enteredEmail:String) -> Bool {
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: enteredEmail)
     }
 
     override func viewDidLoad() {
@@ -125,7 +175,7 @@ class LogInViewController: UIViewController {
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        [imageVC, loginPasswordView, button] .forEach {contentView.addSubview($0)}
+        [imageVC, loginPasswordView, notLongPassword, button] .forEach {contentView.addSubview($0)}
         
         NSLayoutConstraint.activate([
             
@@ -150,8 +200,13 @@ class LogInViewController: UIViewController {
             loginPasswordView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginPasswordView.heightAnchor.constraint(equalToConstant: 100),
             
+            notLongPassword.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            notLongPassword.topAnchor.constraint(equalTo: loginPasswordView.bottomAnchor, constant: 8),
+            notLongPassword.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+//            notLongPassword.heightAnchor.constraint(equalToConstant: 10),
+            
             button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            button.topAnchor.constraint(equalTo: loginPasswordView.bottomAnchor, constant: 16),
+            button.topAnchor.constraint(equalTo: notLongPassword.bottomAnchor, constant: 8),
             button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             button.heightAnchor.constraint(equalToConstant: 50),
             button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)

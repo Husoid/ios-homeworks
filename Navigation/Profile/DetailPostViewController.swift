@@ -1,26 +1,13 @@
 //
-//  PostTableViewCell.swift
+//  DetailPostViewController.swift
 //  Navigation
 //
-//  Created by User on 12/05/2022.
+//  Created by User on 23/05/2022.
 //
 
 import UIKit
 
-protocol CustomPostTableleCellDelegate: AnyObject {
-    func clickDelegate(like: UILabel, cell: PostTableViewCell)
-}
-
-class PostTableViewCell: UITableViewCell {
-    
-    weak var delegate: CustomPostTableleCellDelegate?
-    
-    private lazy var cellView:UIView = {
-        let cellView = UIView()
-        cellView.translatesAutoresizingMaskIntoConstraints = false
-        cellView.backgroundColor = .white
-        return cellView
-    }()
+class DetailPostViewController: UIViewController {
     
     private lazy var authorLabel:UILabel = {
         let authorLabel = UILabel()
@@ -72,21 +59,27 @@ class PostTableViewCell: UITableViewCell {
         viewsLabel.backgroundColor = .white
         return viewsLabel
     }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = false
         layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
     }
     
     @objc private func click() {
-        delegate?.clickDelegate(like: likesLabel, cell: self)
+        let str = likesLabel.text
+        let countLike = String(str!.dropFirst(7))
+        likesLabel.text = "Likes: \((Int(countLike) ?? 0) + 1)"
     }
     
-    func addToCell(post: Post) {
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+
+    
+    func addToDetailPostVC(post: Post) {
         authorLabel.text = post.author
         descriptionLabel.text = post.description
         image.image = post.image
@@ -96,40 +89,32 @@ class PostTableViewCell: UITableViewCell {
     
     private func layout() {
        
-        contentView.addSubview(cellView)
+        [authorLabel, descriptionLabel, image, likesLabel, viewsLabel] .forEach {view.addSubview($0)}
         
         NSLayoutConstraint.activate([
-            cellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            cellView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
-        
-        [authorLabel, descriptionLabel, image, likesLabel, viewsLabel] .forEach {cellView.addSubview($0)}
-        
-        NSLayoutConstraint.activate([
-            authorLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 16),
-            authorLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 16),
-            authorLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -16),
+            authorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            authorLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            authorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-            image.leadingAnchor.constraint(equalTo: cellView.leadingAnchor),
+            image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             image.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 16),
-            image.trailingAnchor.constraint(equalTo: cellView.trailingAnchor),
-            image.heightAnchor.constraint(equalToConstant: contentView.bounds.width),
+            image.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            image.heightAnchor.constraint(equalToConstant: view.bounds.width),
 
-            descriptionLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             descriptionLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-            likesLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 16),
+            likesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             likesLabel.widthAnchor.constraint(equalToConstant: 100),
-            likesLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -16),
+            likesLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             viewsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),
-            viewsLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -16),
+            viewsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             viewsLabel.widthAnchor.constraint(equalToConstant: 100),
-            viewsLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -16),
+            viewsLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
         ])
     }
+
 }

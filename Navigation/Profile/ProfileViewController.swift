@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private let post = Post.makePost()
+    private var post = Post.makePost()
     
     private lazy var tableView:UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -21,6 +21,11 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
     }()
+    
+    override func viewWillAppear(_ animated:Bool) {
+       super.viewWillAppear(animated)
+       tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +69,8 @@ extension ProfileViewController:UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+            cell.delegate = self
+            cell.tag = indexPath.row
             cell.addToCell(post: post[indexPath.row])
             return cell
             }
@@ -88,6 +95,32 @@ extension ProfileViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         section == 0 ? 222 : 0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let countViews = post[indexPath.row].views
+        post[indexPath.row].views = countViews + 1
+        let detailVC =  DetailPostViewController()
+        detailVC.addToDetailPostVC(post: post[indexPath.row])
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        var deleteButton: UITableViewRowAction = {
+            
+            let deleteButton = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
+                self.post.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            deleteButton.backgroundColor = .systemGray
+            deleteButton.title = "Удалить"
+            return deleteButton
+        }()
+        
+        return [deleteButton]
+    }
 }
 
 //MARK: - PhotosTableViewCellDelegate
@@ -97,4 +130,22 @@ extension ProfileViewController: PhotosTableViewCellDelegate {
         let detailVC = PhotosViewController()
         navigationController?.pushViewController(detailVC, animated: true)
     }
+}
+
+//MARK: - CustomPostTableleCellDelegate
+
+extension ProfileViewController: CustomPostTableleCellDelegate {
+    func clickDelegate(like: UILabel, cell: PostTableViewCell) {
+        let str = like.text
+        let countLike = String(str!.dropFirst(7))
+        like.text = "Likes: \((Int(countLike) ?? 0) + 1)"
+        post[cell.tag].likes += 1
+    }
+    
+//    func clickDelegate(like: UILabel) {
+//        let str = like.text
+//        let countLike = String(str!.dropFirst(7))
+//        like.text = "Likes: \((Int(countLike) ?? 0) + 1)"
+//    }
+    
 }
